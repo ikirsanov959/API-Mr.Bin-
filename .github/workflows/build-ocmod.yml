@@ -13,17 +13,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up build folder
-      run: mkdir -p build
-
     - name: Create ocmod.zip directly
       run: zip -r ocmod.zip * -x '*.git*' '.github/*'
 
-    - name: Move ocmod.zip to build folder
-      run: mv ocmod.zip build/
-
-    - name: Upload artifact
+    - name: Upload ocmod.zip directly
       uses: actions/upload-artifact@v3
       with:
-        name: ocmod.zip
-        path: build/ocmod.zip
+        name: api-mrBin.ocmod.zip
+        path: ocmod.zip
