@@ -16,6 +16,12 @@ jobs:
     - name: Create ocmod.zip directly
       run: zip -r ocmod.zip * -x '*.git*' '.github/*'
 
+    - name: Create Git tag
+      run: git tag -a v1.0 -m "Release v1.0"
+
+    - name: Push Git tag
+      run: git push origin v1.0
+
     - name: Upload ocmod.zip to GitHub Releases
       uses: softprops/action-gh-release@v1
       with:
