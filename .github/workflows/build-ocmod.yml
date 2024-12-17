@@ -4,22 +4,23 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Set up build folder
+      run: mkdir -p build
+
     - name: Zip OCMOD files
-      run: |
-        mkdir -p build
-        zip -r build/ocmod.zip * -x '*.git*' '.github/*'
+      run: zip -r ocmod.zip * -x '*.git*' '.github/*'
+
+    - name: Move ocmod.zip to build folder
+      run: mv ocmod.zip build/
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
