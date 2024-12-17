@@ -16,11 +16,8 @@ jobs:
     - name: Set up build folder
       run: mkdir -p build
 
-    - name: Zip OCMOD files
-      run: zip -r ocmod.zip * -x '*.git*' '.github/*'
-
-    - name: Move ocmod.zip to build folder
-      run: mv ocmod.zip build/
+    - name: Zip OCMOD files directly
+      run: zip -r build/ocmod.zip * -x '*.git*' '.github/*'
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
