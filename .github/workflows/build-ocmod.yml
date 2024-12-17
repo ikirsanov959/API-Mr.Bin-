@@ -16,8 +16,9 @@ jobs:
     - name: Create ocmod.zip directly
       run: zip -r ocmod.zip * -x '*.git*' '.github/*'
 
-    - name: Upload ocmod.zip directly
-      uses: actions/upload-artifact@v3
+    - name: Upload ocmod.zip to GitHub Releases
+      uses: softprops/action-gh-release@v1
       with:
-        name: api-mrBin.ocmod.zip
-        path: ocmod.zip
+        files: ocmod.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
